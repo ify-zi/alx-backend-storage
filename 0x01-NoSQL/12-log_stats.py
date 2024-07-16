@@ -16,7 +16,7 @@ if __name__ == "__main__":
     stat = {"path": "/status"}
     print(f"{get_doc({})} logs")
     print(f"Methods:")
-    print(f"\tmethod GET:{get_doc({'method': 'GET' })}")
+    print(f"\tmethod GET: {get_doc({'method': 'GET' })}")
     print(f"\tmethod POST: {get_doc({'method': 'POST'})}")
     print(f"\tmethod PUT: {get_doc({'method': 'PUT'})}")
     print(f"\tmethod PATCH: {get_doc({'method': 'PATCH'})}")
