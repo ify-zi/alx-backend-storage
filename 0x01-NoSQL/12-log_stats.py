@@ -5,24 +5,20 @@
 
 from pymongo import MongoClient
 
-client = MongoClient('mongodb://127.0.0.1:27017')
-collection = client.logs.nginx
 
-def get_stats(collection):
-    """function definition"""
-    total = collection.count_documents({})
-    get_count = collection.count_documents({"method": "GET"})
-    post_count = collection.count_documents({"method": "POST"})
-    put_count = collection.count_documents({"method": "PUT"})
-    patch_count = collection.count_documents({"method": "PATCH"})
-    delete_count = collection.count_documents({"method": "DELETE"})
-    stat_count = collection.count_documents({"path": "/status"})
+if __name__ == "__main__":
+    def get_doc(doc: dict)-> int:
+        """ function definition """
+        client = MongoClient('mongodb://127.0.0.1:27017')
+        docs = client.logs.nginx
+        return docs.count_documents(doc)
     
-    print(f"{total} logs\nMethods:\n\tmethod GET:{get_count}\n\t\
-    method POST: {post_count}\n\t\
-    method PUT: {put_count}\n\t\
-    method PATCH: {patch_count}\n\t\
-    method DELETE: {delete_count}\n\
-    {stat_count} status check")
-
-get_stats(collection)
+    stat = {"path": "/status"}
+    print(f"{get_doc({})} logs")
+    print(f"Methods:")
+    print(f"\tmethod GET:{get_doc({'method': 'GET' })}")
+    print(f"\tmethod POST: {get_doc({'method': 'POST'})}")
+    print(f"\tmethod PUT: {get_doc({'method': 'PUT'})}")
+    print(f"\tmethod PATCH: {get_doc({'method': 'PATCH'})}")
+    print(f"\tmethod DELETE: {get_doc({'method': 'DELETE'})}")
+    print(f"{get_doc(stat)} status check")
