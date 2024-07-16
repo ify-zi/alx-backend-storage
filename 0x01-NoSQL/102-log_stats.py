@@ -33,7 +33,7 @@ if __name__ == "__main__":
     print(f"\tmethod PATCH: {get_doc({'method': 'PATCH'})}")
     print(f"\tmethod DELETE: {get_doc({'method': 'DELETE'})}")
     print(f"{get_doc(stat)} status check")
-    print("Ips:")
+    print("IPs:")
     p = get_ip()
     for i in p:
         print("\t{}: {}".format(i['_id'], i['count']))
