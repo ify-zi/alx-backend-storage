@@ -1,4 +1,4 @@
 // script that list docs that start with Holberton
 
 
-db.school.find({name: {'$regex': '^Holberton', '$options': 'i'}}, {"name": 1})
+db.school.find({name: {'$regex': '^Holberton'}}, {"name": 1})
